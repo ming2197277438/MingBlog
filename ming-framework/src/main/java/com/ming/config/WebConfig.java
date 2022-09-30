@@ -7,8 +7,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * 跨域请求，也可以使用 @CrossOrigin
  */
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
+//@Configuration
+/*public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -26,4 +26,4 @@ public class WebConfig implements WebMvcConfigurer {
                 .maxAge(3600);
     }
 
-}
+}*/
