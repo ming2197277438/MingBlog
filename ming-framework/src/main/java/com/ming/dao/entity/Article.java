@@ -1,6 +1,9 @@
 package com.ming.dao.entity;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,8 +18,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("ming_article")
 public class Article{
-    
+
+    @TableId
     private Long id;
     //标题
     private String title;
