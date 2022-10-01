@@ -5,10 +5,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.Article;
+import com.ming.dao.vo.HotArticleVo;
 import com.ming.mapper.ArticleMapper;
 import com.ming.service.ArticleService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,7 +33,14 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         //前10条
         Page<Article> page = new Page<>(1,10);
         page(page,queryWrapper);
-        List<Article> records = page.getRecords();
-        return ResponseResult.okResult(records);
+        List<Article> articles = page.getRecords();
+        //bena拷贝
+        List<HotArticleVo> articleVos = new ArrayList<>();
+        for (Article article : articles) {
+            HotArticleVo vo = new HotArticleVo();
+            BeanUtils.copyProperties(article,vo);
+            articleVos.add(vo);
+        }
+        return ResponseResult.okResult(articleVos);
     }
 }
