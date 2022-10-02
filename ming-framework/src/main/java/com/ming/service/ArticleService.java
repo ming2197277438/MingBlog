@@ -10,4 +10,13 @@ public interface ArticleService extends IService<Article> {
      * @return
      */
     ResponseResult hotArticleList();
+
+    /**
+     * 文章列表
+     * @param pageNum
+     * @param pageSize
+     * @param categoryId
+     * @return
+     */
+    ResponseResult articleList(Integer pageNum, Integer pageSize, Long categoryId);
 }

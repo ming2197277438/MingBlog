@@ -29,4 +29,11 @@ public class ArticleController {
         //查询热门文章
         return articleService.hotArticleList();
     }
+
+    @GetMapping("/articleList")
+    public ResponseResult articleList(Integer pageNum,
+                                      Integer pageSize,
+                                      Long categoryId){
+        return articleService.articleList(pageNum,pageSize,categoryId);
+    }
 }

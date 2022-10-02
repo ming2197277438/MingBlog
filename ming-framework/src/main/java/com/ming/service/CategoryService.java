@@ -1,6 +1,7 @@
 package com.ming.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.Category;
 
 
@@ -12,5 +13,10 @@ import com.ming.dao.entity.Category;
  */
 public interface CategoryService extends IService<Category> {
 
+    /**
+     * 查询分类信息
+     * @return
+     */
+    ResponseResult getCategoryList();
 }
 
