@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 跨域请求，也可以使用 @CrossOrigin
  */
-//@Configuration
+@Configuration
 public class WebConfig implements WebMvcConfigurer {
 
 
