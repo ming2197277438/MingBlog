@@ -6,24 +6,31 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ming.constants.SystemConstants;
 import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.Article;
+import com.ming.dao.entity.Category;
 import com.ming.dao.vo.ArticleListVo;
 import com.ming.dao.vo.HotArticleVo;
 import com.ming.dao.vo.PageVO;
 import com.ming.mapper.ArticleMapper;
 import com.ming.service.ArticleService;
+import com.ming.service.CategoryService;
 import com.ming.utils.BeanCopyUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static com.ming.constants.SystemConstants.ARTICLE_STATUS_NORMAL;
 
 @Service
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 
+    @Resource
+    private CategoryService categoryService;
 
     /**
      * 查询热门文章
@@ -66,6 +73,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         //分页查询
         Page<Article> page = new Page<>(pageNum, pageSize);
         page(page,queryWrap);
+        List<Article> articles = page.getRecords();
+        //查询categoryName
+          articles.stream()
+                .map(article -> article.setCategoryName
+                        (categoryService.getById(article.getCategoryId()).getName()))
+                .collect(Collectors.toList());
         //封装查询结果
         List<ArticleListVo> articleListVos = BeanCopyUtils.copyBeanList(page.getRecords(), ArticleListVo.class);
         PageVO pageVO = new PageVO(articleListVos,page.getTotal());
