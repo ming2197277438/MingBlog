@@ -9,17 +9,17 @@ import lombok.NoArgsConstructor;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
- * 标签(MingTag)表实体类
+ * 标签(Tag)表实体类
  *
  * @author makejava
- * @since 2022-10-02 13:54:48
+ * @since 2022-10-05 20:24:27
  */
 @SuppressWarnings("serial")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("ming_tag")
-public class MingTag  {
+public class Tag  {
     @TableId
     private Long id;
 
