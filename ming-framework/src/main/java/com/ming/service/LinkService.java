@@ -1,6 +1,7 @@
 package com.ming.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.Link;
 
 
@@ -12,5 +13,10 @@ import com.ming.dao.entity.Link;
  */
 public interface LinkService extends IService<Link> {
 
+    /**
+     * 友链
+     * @return
+     */
+    ResponseResult getAllLink();
 }
 
