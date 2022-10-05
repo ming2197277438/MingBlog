@@ -1,11 +1,9 @@
 package com.ming.controller;
 
+import com.alibaba.fastjson.support.spring.annotation.FastJsonFilter;
 import com.ming.dao.ResponseResult;
 import com.ming.service.ArticleService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -35,5 +33,10 @@ public class ArticleController {
                                       Integer pageSize,
                                       Long categoryId){
         return articleService.articleList(pageNum,pageSize,categoryId);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseResult getArticleDetail(@PathVariable("id") Long id){
+        return articleService.getArticleDetail(id);
     }
 }

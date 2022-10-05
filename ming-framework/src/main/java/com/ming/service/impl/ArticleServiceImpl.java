@@ -3,10 +3,12 @@ package com.ming.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ming.constants.SystemConstants;
 import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.Article;
 import com.ming.dao.entity.Category;
+import com.ming.dao.vo.ArticleDetailVo;
 import com.ming.dao.vo.ArticleListVo;
 import com.ming.dao.vo.HotArticleVo;
 import com.ming.dao.vo.PageVO;
@@ -83,5 +85,26 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         List<ArticleListVo> articleListVos = BeanCopyUtils.copyBeanList(page.getRecords(), ArticleListVo.class);
         PageVO pageVO = new PageVO(articleListVos,page.getTotal());
         return ResponseResult.okResult(pageVO);
+    }
+
+    /**
+     * 文章详情
+     * @param id
+     * @return
+     */
+    @Override
+    public ResponseResult getArticleDetail(Long id) {
+        //根据id查询文章
+        Article article = getById(id);
+        //转换VO
+        ArticleDetailVo articleDetailVo = BeanCopyUtils.copyBean(article, ArticleDetailVo.class);
+        //根据分类id查询分类名
+        Long categoryId = articleDetailVo.getCategoryId();
+        Category category = categoryService.getById(categoryId);
+        if (category != null) {
+            articleDetailVo.setCategoryName(category.getName());
+        }
+        //封装响应
+        return ResponseResult.okResult(articleDetailVo);
     }
 }
