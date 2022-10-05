@@ -1,6 +1,7 @@
 package com.ming.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ming.dao.entity.RoleMenu;
 
 
 /**

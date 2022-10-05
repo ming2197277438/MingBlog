@@ -1,6 +1,9 @@
 package com.ming.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ming.dao.entity.RoleMenu;
+import com.ming.mapper.RoleMenuMapper;
+import com.ming.service.RoleMenuService;
 import org.springframework.stereotype.Service;
 
 /**
