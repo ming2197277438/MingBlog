@@ -1,6 +1,7 @@
 package com.ming.config;
 
-import com.ming.filter.JwtAuthenticationToken;
+
+import com.ming.filter.JwtAuthenticationTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,7 +17,7 @@ import javax.annotation.Resource;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
-    private JwtAuthenticationToken jwtAuthenticationToken;
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -38,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http.logout().disable();
-        http.addFilterBefore(jwtAuthenticationToken, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         //允许跨域
         http.cors();
     }

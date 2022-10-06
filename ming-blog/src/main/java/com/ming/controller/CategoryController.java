@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/category")
-@CrossOrigin
 public class CategoryController {
 
     @Resource

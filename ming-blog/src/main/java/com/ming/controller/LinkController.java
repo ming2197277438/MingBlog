@@ -12,9 +12,9 @@ import javax.annotation.Resource;
 /**
  * 友连
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/link")
-@CrossOrigin
 public class LinkController {
 
     @Resource

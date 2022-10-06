@@ -10,9 +10,9 @@ import javax.annotation.Resource;
 /**
  * 热门数据
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/article")
-@CrossOrigin
 public class ArticleController {
     @Resource
     private ArticleService articleService;

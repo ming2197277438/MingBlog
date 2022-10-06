@@ -35,9 +35,9 @@ public class BlogLoginServiceImpl implements BlogLoginService {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword());
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
         //判断是否认证通过
-        if(Objects.isNull(authenticate)) throw new RuntimeException("用户名或密码错误");
+        if(Objects.isNull(authenticate)) {throw new RuntimeException("用户名或密码错误");}
         //获取userId生成token
-       LoginUser loginUser =(LoginUser) authenticate.getPrincipal();
+        LoginUser loginUser =(LoginUser) authenticate.getPrincipal();
         String userId = loginUser.getUser().getId().toString();
         String jwt = JwtUtil.createJWT(userId);
         //把用户信息存入redis

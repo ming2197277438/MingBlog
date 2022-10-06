@@ -3,6 +3,7 @@ package com.ming.controller;
 import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.User;
 import com.ming.service.BlogLoginService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
 /**
  * 登录
  */
+@CrossOrigin
 @RestController
 public class BlogLoginController {
 

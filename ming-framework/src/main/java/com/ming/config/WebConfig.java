@@ -20,7 +20,7 @@ import java.util.List;
 public class WebConfig implements WebMvcConfigurer {
 
 
-   /* @Override
+    /*@Override
     public void addCorsMappings(CorsRegistry registry) {
         // 设置允许跨域的路径
         registry.addMapping("/**")
@@ -34,8 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 // 跨域允许时间
                 .maxAge(3600);
-    }
-*/
+    }*/
    //使用@Bean注入fastJsonHttpMessageConvert
    @Bean
    public HttpMessageConverter fastJsonHttpMessageConverters() {
