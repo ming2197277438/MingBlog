@@ -2,7 +2,10 @@ package com.ming.controller;
 
 import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.User;
+import com.ming.e.SystemException;
+import com.ming.enums.AppHttpCodeEnum;
 import com.ming.service.BlogLoginService;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +16,6 @@ import javax.annotation.Resource;
 /**
  * 登录
  */
-@CrossOrigin
 @RestController
 public class BlogLoginController {
 
@@ -22,6 +24,10 @@ public class BlogLoginController {
 
     @PostMapping("/login")
     public ResponseResult login(@RequestBody User user) {
+        if(!StringUtils.hasText(user.getUserName())){
+            //提示 必须要用户名
+            throw new SystemException(AppHttpCodeEnum.REQUIRE_USERNAME);
+        }
        return blogLoginService.login(user);
     }
 }
