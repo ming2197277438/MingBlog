@@ -1,6 +1,7 @@
-package service;
+package com.ming.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.Comment;
 
 
@@ -12,5 +13,8 @@ import com.ming.dao.entity.Comment;
  */
 public interface CommentService extends IService<Comment> {
 
+    ResponseResult commentList(Long articleId, Integer pageNum, Integer pageSize);
+
+    ResponseResult addComment(Comment comment);
 }
 
