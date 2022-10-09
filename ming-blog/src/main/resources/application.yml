@@ -26,7 +26,7 @@ mybatis-plus:
       logic-not-delete-value: 0
       id-type: auto
 oss:
-  endpoint: oss-cn-hangzhou.aliyuncs.com
-  accessKeyId: LTAI5tR47yXPpMoPpwoDN8LD
   accessKeySecret: P23xOdzFWuQhqdIb3cVDu0ah2xVPKV
+  accessKeyId: LTAI5tR47yXPpMoPpwoDN8LD
+  endpoint: oss-cn-hangzhou.aliyuncs.com
   bucketName: mingblog2020
