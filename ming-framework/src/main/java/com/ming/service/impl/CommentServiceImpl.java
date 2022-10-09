@@ -8,19 +8,20 @@ import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.Comment;
 import com.ming.dao.vo.CommentVo;
 import com.ming.dao.vo.PageVO;
+import com.ming.e.SystemException;
+import com.ming.enums.AppHttpCodeEnum;
 import com.ming.mapper.CommentMapper;
 import com.ming.service.CommentService;
 import com.ming.service.UserService;
 import com.ming.utils.BeanCopyUtils;
-import com.ming.utils.SecurityUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * 评论表(Comment)表服务实现类
- *
  * @author makejava
  * @since 2022-10-02 13:46:59
  */
@@ -30,16 +31,16 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     @Resource
     private UserService userService;
 
-
-
     @Override
-    public ResponseResult commentList(Long articleId, Integer pageNum, Integer pageSize) {
+    public ResponseResult commentList(String commentType, Long articleId, Integer pageNum, Integer pageSize) {
         //查询对应文章的根评论
         LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper<>();
         //对articleId进行判断
-        queryWrapper.eq(Comment::getArticleId,articleId);
+        queryWrapper.eq(SystemConstants.ARTICLE_COMMENT.equals(commentType),Comment::getArticleId,articleId);
         //跟评论rootId为-1
         queryWrapper.eq(Comment::getRootId, SystemConstants.COMMENT_ROOT_ID);
+        //评论类型
+        queryWrapper.eq(Comment::getType,commentType);
         //分页查询
         Page<Comment> page = new Page<>(pageNum,pageSize);
         page(page,queryWrapper);
@@ -57,8 +58,9 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
     @Override
     public ResponseResult addComment(Comment comment) {
-        //获取当前用户id
-        comment.setCreateBy(SecurityUtils.getUserId());
+        //评论内容不能为null
+        if (!StringUtils.hasText(comment.getContent()))
+            throw new SystemException(AppHttpCodeEnum.CONTENT_NOT_NULL);
         save(comment);
         return ResponseResult.okResult();
     }

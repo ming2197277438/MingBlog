@@ -117,6 +117,4 @@ public class ResponseResult<T> implements Serializable {
         this.data = data;
     }
 
-
-
 }

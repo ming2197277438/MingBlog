@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 /**
  * 登录
  */
+@CrossOrigin
 @RestController
 public class BlogLoginController {
 

@@ -1,7 +1,7 @@
 package com.ming.controller;
 
 import com.ming.dao.ResponseResult;
-import com.ming.service.LinkService;
+import com.ming.service.UserService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,18 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * 友连
+ * @Author: ming
+ * @Date: 2022/10/09/19:46
+ * @Description:
  */
 @CrossOrigin
 @RestController
-@RequestMapping("/link")
-public class LinkController {
+@RequestMapping("/user")
+public class UserController {
 
     @Resource
-    private LinkService linkService;
+    private UserService userService;
 
-    @GetMapping("/getAllLink")
-    public ResponseResult getAllLink(){
-        return linkService.getAllLink();
+    @GetMapping("/userInfo")
+    public ResponseResult userInfo(){
+        return userService.userInfo();
     }
 }

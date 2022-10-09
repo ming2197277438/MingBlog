@@ -1,6 +1,7 @@
 package com.ming.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ming.dao.ResponseResult;
 import com.ming.dao.entity.User;
 
 
@@ -11,6 +12,8 @@ import com.ming.dao.entity.User;
  * @since 2022-10-05 20:26:48
  */
 public interface UserService extends IService<User> {
+
+    ResponseResult userInfo();
 
 }
 

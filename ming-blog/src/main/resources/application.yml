@@ -8,8 +8,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   servlet:
     multipart:
-      max-file-size: 2MB
-      max-request-size: 5MB
+      max-file-size: 100MB
+      max-request-size: 500MB
     # redis配置
   redis:
     host: 47.97.200.47
@@ -25,3 +25,8 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
       id-type: auto
+oss:
+  endpoint: oss-cn-hangzhou.aliyuncs.com
+  accessKeyId: LTAI5tR47yXPpMoPpwoDN8LD
+  accessKeySecret: P23xOdzFWuQhqdIb3cVDu0ah2xVPKV
+  bucketName: mingblog2020
